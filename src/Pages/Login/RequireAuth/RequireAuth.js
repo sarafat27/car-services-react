@@ -3,7 +3,7 @@ import { useAuthState, useSendEmailVerification } from 'react-firebase-hooks/aut
 import { Navigate, useLocation } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/loading/Loading';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const RequireAuth = ({ children }) => {
@@ -18,7 +18,7 @@ const RequireAuth = ({ children }) => {
     }
     if (user.providerData[0]?.providerId === 'password' && !user.emailVerified) {
         return <div className="text-center">
-            <ToastContainer></ToastContainer>
+
             <h3 className='text-danger'>Your email is not verified</h3>
             <h4 className='text-success'>please verify your email address</h4>
             <button
