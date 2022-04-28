@@ -11,15 +11,15 @@ const Orders = () => {
     const navigate = useNavigate();
     useEffect(() => {
         const getOrders = async () => {
-            const email = user.email
-            const url = `http://localhost:5000/order?email=${email}`
+            const email = user?.email
+            const url = `https://serene-beyond-13093.herokuapp.com/order?email=${email}`
             try {
                 const { data } = await axiosPrivate.get(url);
                 setOrders(data)
             }
             catch (error) {
                 console.log(error);
-                if (error.response.status === 401 || error.response.status === 403) {
+                if (error?.response?.status === 401 || error?.response?.status === 403) {
                     signOut(auth)
                     navigate('/login')
                 }
@@ -28,8 +28,13 @@ const Orders = () => {
         getOrders();
     }, [])
     return (
-        <div>
+        <div className='w-50 mx-auto'>
             <h2>Your orders: {orders.length}</h2>
+            {
+                orders.map(order => <div key={order.id}>
+                    <p>{order.email} : {order.service}</p>
+                </div>)
+            }
         </div>
     );
 };
