@@ -26,7 +26,7 @@ const Orders = () => {
             }
         }
         getOrders();
-    }, [])
+    }, [user])
     return (
         <div className='w-50 mx-auto'>
             <h2>Your orders: {orders.length}</h2>
